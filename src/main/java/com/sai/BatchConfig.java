@@ -48,7 +48,7 @@ public class BatchConfig {
     public FlatFileItemReader<User> reader() {
     	
         FlatFileItemReader<User> reader = new FlatFileItemReader<>();
-        reader.setResource(new ClassPathResource("users.csv"));
+        reader.setResource(new ClassPathResource("pharmacies.csv"));
         reader.setLinesToSkip(1);
         
         DefaultLineMapper<User> lineMapper = new DefaultLineMapper<>();
@@ -56,7 +56,7 @@ public class BatchConfig {
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
         tokenizer.setDelimiter(",");
     	tokenizer.setStrict(false);
-    	tokenizer.setNames(new String[] {"col1", "col2", "col3", "col4", "col5", "col6", "col7", "col8", "col9", "col10"});
+    	tokenizer.setNames(new String[]{ "name", "address", "city", "state", "zip", "latitude", "longitude"});
 
         BeanWrapperFieldSetMapper<User> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(User.class);
@@ -110,7 +110,7 @@ public class BatchConfig {
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                .<User, User>chunk(100)
+                .<User, User>chunk(1)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())

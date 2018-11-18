@@ -8,58 +8,46 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
+
+
 	@Entity
-	@Table(name="userdata")
+	@Table(name="pharmacy")
 	public class User {
 
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 private int id;
-	 
-	 @Column(name = "col1")
-	 private String  col1;
-	 @Column(name = "col2")
-	 private String  col2;
-	 @Column(name = "col3")
-	 private String  col3;
-	 @Column(name = "col4")
-	 private String  col4;
-	 @Column(name = "col5")
-	 private String  col5;
-	 @Column(name = "col6")
-	 private String  col6;
-	 @Column(name = "col7")
-	 private String  col7;
-	 @Column(name = "col8")
-	 private String  col8;
-	 @Column(name = "col9")
-	 private String  col9;
-	 @Column(name = "col10")
-	 private String  col10;
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", col1=" + col1 + ", col2=" + col2 + ", col3=" + col3 + ", col4=" + col4 + ", col5="
-				+ col5 + ", col6=" + col6 + ", col7=" + col7 + ", col8=" + col8 + ", col9=" + col9 + ", col10=" + col10
-				+ "]";
-	}
+
+		 @Id
+		 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id; 
+		 @Column(name = "name")
+	private String name;
+		 @Column(name = "address")
+	private String address;
+		 @Column(name = "city")
+	private String city;
+		 @Column(name = "state")
+	private String state;
+		 @Column(name = "zip")
+	private int zip;
+		 @Column(name = "latitude")
+	private double latitude;
+		 @Column(name = "longitude")
+	private double longitude;
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(int id, String col1, String col2, String col3, String col4, String col5, String col6, String col7,
-			String col8, String col9, String col10) {
+	public User(int id, String name, String address, String city, String state, int zip, double latitude,
+			double longitude) {
 		super();
 		this.id = id;
-		this.col1 = col1;
-		this.col2 = col2;
-		this.col3 = col3;
-		this.col4 = col4;
-		this.col5 = col5;
-		this.col6 = col6;
-		this.col7 = col7;
-		this.col8 = col8;
-		this.col9 = col9;
-		this.col10 = col10;
+		this.name = name;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 	public int getId() {
 		return id;
@@ -67,67 +55,110 @@ import javax.persistence.Table;
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCol1() {
-		return col1;
+	public String getName() {
+		return name;
 	}
-	public void setCol1(String col1) {
-		this.col1 = col1;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getCol2() {
-		return col2;
+	public String getAddress() {
+		return address;
 	}
-	public void setCol2(String col2) {
-		this.col2 = col2;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getCol3() {
-		return col3;
+	public String getCity() {
+		return city;
 	}
-	public void setCol3(String col3) {
-		this.col3 = col3;
+	public void setCity(String city) {
+		this.city = city;
 	}
-	public String getCol4() {
-		return col4;
+	public String getState() {
+		return state;
 	}
-	public void setCol4(String col4) {
-		this.col4 = col4;
+	public void setState(String state) {
+		this.state = state;
 	}
-	public String getCol5() {
-		return col5;
+	public int getZip() {
+		return zip;
 	}
-	public void setCol5(String col5) {
-		this.col5 = col5;
+	public void setZip(int zip) {
+		this.zip = zip;
 	}
-	public String getCol6() {
-		return col6;
+	public double getLatitude() {
+		return latitude;
 	}
-	public void setCol6(String col6) {
-		this.col6 = col6;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
-	public String getCol7() {
-		return col7;
+	public double getLongitude() {
+		return longitude;
 	}
-	public void setCol7(String col7) {
-		this.col7 = col7;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
-	public String getCol8() {
-		return col8;
+	@Override
+	public String toString() {
+		return "Pharmacy [id=" + id + ", name=" + name + ", address=" + address + ", city=" + city + ", state=" + state
+				+ ", zip=" + zip + ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
-	public void setCol8(String col8) {
-		this.col8 = col8;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + id;
+		long temp;
+		temp = Double.doubleToLongBits(latitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(longitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + zip;
+		return result;
 	}
-	public String getCol9() {
-		return col9;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (id != other.id)
+			return false;
+		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+			return false;
+		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (zip != other.zip)
+			return false;
+		return true;
 	}
-	public void setCol9(String col9) {
-		this.col9 = col9;
-	}
-	public String getCol10() {
-		return col10;
-	}
-	public void setCol10(String col10) {
-		this.col10 = col10;
-	}
-	
+
 	 
 	 
 	}
